@@ -1,20 +1,35 @@
 package com.example.tradecapture.controller;
+import com.example.tradecapture.entity.*;
+
+import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.example.tradecapture.service.TradeService;
 
 @RestController
 @RequestMapping("/trades")
 public class TradeController {
 
-    // Inject TradeService
+    private final TradeService tradeService;
+
+    public TradeController(TradeService tradeService){
+        this.tradeService = tradeService;
+    }
 
     @PostMapping
-    public void createTrade() {
-        // TODO: implement POST endpoint
+    public Trade createTrade(@RequestBody Trade trade) {
+        try {
+            return tradeService.createTrade(trade);
+        } catch (Exception e){
+            System.out.println("Exception occurred: " + e);
+            return null;
+        }
     }
 
     @GetMapping
-    public void getTrades() {
-        // TODO: implement GET endpoint with pagination
+    public List<Trade> getTrades(@RequestParam int limit, 
+        @RequestParam Long cursor) {
+        return tradeService.getTrades(limit, cursor);
     }
 }

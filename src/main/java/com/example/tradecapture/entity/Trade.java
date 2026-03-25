@@ -3,21 +3,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-enum Side {
-    BUY(1),
-    SELL(2);
-
-    private int value;
-
-    Side(int value){
-        this.value = value;
-    }
-
-    public String getValue(){
-        return (value == 1) ? "BUY": "SELL";
-    }
-}
-
 @Entity
 @Table(name = "trades")
 public class Trade {
@@ -41,8 +26,17 @@ public class Trade {
     private LocalDateTime executedAt;
     private LocalDateTime createdAt;
 
-    public Trade(){
+    private String externalId;
 
+    public Trade(Account account, Instrument instrument, 
+        Side side, Integer quantity, BigDecimal price, 
+        LocalDateTime executedAt){
+        this.account = account;
+        this.instrument = instrument;
+        this.side = side;
+        this.quantity = quantity;
+        this.price = price;
+        this.executedAt = executedAt;
     }
     
     public void setQuantity(Integer quantity){
@@ -89,4 +83,7 @@ public class Trade {
         return this.createdAt;
     }
 
+    public String getExternalId(){
+        return this.externalId;
+    }
 }
