@@ -10,16 +10,8 @@ public class PositionId implements Serializable {
     private Long accountId;
     private Long instrumentId;
 
-    @ManyToOne
-    @MapsId("accountId")
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-    @ManyToOne
-    @MapsId("instrumentId")
-    @JoinColumn(name = "instrument_id")
-    private Instrument instrument;
-
+    public PositionId(){}
+    
     public PositionId(Long accountId, Long instrumentId){
         this.accountId = accountId;
         this.instrumentId = instrumentId;

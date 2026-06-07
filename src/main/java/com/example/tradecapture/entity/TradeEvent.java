@@ -12,7 +12,7 @@ public class TradeEvent {
 
     @ManyToOne
     @JoinColumn(name="trade_id")
-    private Long tradeId;
+    private Trade trade;
 
     @Enumerated(EnumType.STRING)
     private EventType eventType; 
@@ -20,9 +20,11 @@ public class TradeEvent {
     private String payload;
     private LocalDateTime createdAt;
 
-    public TradeEvent(Long tradeId, EventType eventType, 
+    public TradeEvent() {}
+    
+    public TradeEvent(Trade trade, EventType eventType, 
         String payload, LocalDateTime createdAt){
-        this.tradeId = tradeId;
+        this.trade = trade;
         this.eventType = eventType;
         this.payload = payload;
         this.createdAt = createdAt;
@@ -32,8 +34,8 @@ public class TradeEvent {
         return this.tradeEventId;
     }
 
-    public Long getTradeId(){
-        return this.tradeId;
+    public Trade getTrade(){
+        return this.trade;
     }
 
     public EventType getEventType(){
@@ -48,8 +50,8 @@ public class TradeEvent {
         return this.createdAt;
     }
 
-    public void setTradeId(Long tradeId){
-        this.tradeId = tradeId;
+    public void setTrade(Trade trade){
+        this.trade = trade;
     }
 
     public void setEventType(EventType eventType){

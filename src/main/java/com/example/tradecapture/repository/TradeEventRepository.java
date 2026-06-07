@@ -14,7 +14,7 @@ public interface TradeEventRepository extends JpaRepository<TradeEvent, Long> {
     Optional<TradeEvent> findByTradeEventId(Long tradeEventId);
 
     // get trade events by tradeid
-    List<TradeEvent> findByTradeId(Long tradeId);
+    List<TradeEvent> findByTrade(Trade trade);
 
     // get trade events by eventType
     List<TradeEvent> findByEventType(EventType eventType);

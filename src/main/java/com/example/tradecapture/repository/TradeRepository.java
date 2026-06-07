@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 @Repository
@@ -46,6 +47,6 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
     // get trades for side
     List<Trade> findBySide(Side side);
 
-    // get N trades where id > specified id ordered
-    List<Trade> findByIdGreaterThanOrderByIdAsc(Long cursor, Pageable pageable);
+    // get N trades where trade id > specified id ordered
+    Page<Trade> findByTradeIdGreaterThan(Long tradeId, Pageable pageable);
 }

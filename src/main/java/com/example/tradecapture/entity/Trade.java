@@ -23,11 +23,18 @@ public class Trade {
 
     private Integer quantity;
     private BigDecimal price;
+
+    @Enumerated(EnumType.STRING)
+    private PricingStatus pricingStatus;
+
     private LocalDateTime executedAt;
     private LocalDateTime createdAt;
 
+    @Column(unique=true)
     private String externalId;
 
+    public Trade() {}
+    
     public Trade(Account account, Instrument instrument, 
         Side side, Integer quantity, BigDecimal price, 
         LocalDateTime executedAt){
@@ -36,7 +43,9 @@ public class Trade {
         this.side = side;
         this.quantity = quantity;
         this.price = price;
+        this.createdAt = LocalDateTime.now();
         this.executedAt = executedAt;
+        this.pricingStatus = (price != null) ? PricingStatus.COMPLETED : PricingStatus.PENDING;
     }
     
     public void setQuantity(Integer quantity){
@@ -45,6 +54,14 @@ public class Trade {
 
     public void setPrice(BigDecimal price){
         this.price = price;
+    }
+
+    public void setPricingStatus(PricingStatus pricingStatus){
+        this.pricingStatus = pricingStatus;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt = createdAt;
     }
 
     public void setExecutedAt(LocalDateTime executedAt){
@@ -73,6 +90,10 @@ public class Trade {
 
     public BigDecimal getPrice(){
         return this.price;
+    }
+
+    public PricingStatus getPricingStatus(){
+        return this.pricingStatus;
     }
 
     public LocalDateTime getExecutedAt(){

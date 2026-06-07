@@ -10,18 +10,12 @@ import com.example.tradecapture.entity.*;
 public interface PositionRepository extends JpaRepository<Position, PositionId> {
     
     // get a specific Position by positionId
-    Optional<Position> findByPositionId(PositionId positionId);
+    Optional<Position> findById(PositionId positionId);
 
-    // get instruments by asset class
-    List<Position> findByAssetClass(String assetClass);
-
-    // get instruments by currency
-    List<Position> findByCurrency(String currency);
-
-    // get instruments by acountId
+    // get positions by acountId
     List<Position> findByIdAccountId(Long accountId);
 
-    // get instruments by instrumentId
+    // get positions by instrumentId
     List<Position> findByIdInstrumentId(Long instrumentId);
     
 }

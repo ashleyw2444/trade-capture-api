@@ -11,6 +11,8 @@ public class Instrument {
     private String assetClass;
     private String currency;
 
+    public Instrument() {}
+
     public Instrument(String assetClass, String currency){
         this.assetClass = assetClass;
         this.currency = currency;

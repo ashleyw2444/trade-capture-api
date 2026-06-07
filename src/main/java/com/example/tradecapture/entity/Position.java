@@ -9,8 +9,20 @@ public class Position {
     @EmbeddedId
     private PositionId id;
 
+    @ManyToOne
+    @MapsId("accountId")
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    @ManyToOne
+    @MapsId("instrumentId")
+    @JoinColumn(name = "instrument_id")
+    private Instrument instrument;
+
     private Integer netQuantity;
     private BigDecimal avgPrice;
+
+    public Position() {}
 
     public Position(PositionId id,
         Integer netQuantity, BigDecimal avgPrice){

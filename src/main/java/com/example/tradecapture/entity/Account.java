@@ -23,6 +23,8 @@ public class Account {
         this.createdAt = createdAt;
     }
 
+    public Account() {}
+
     public Long getAccountId(){
         return this.accountId;
     }
